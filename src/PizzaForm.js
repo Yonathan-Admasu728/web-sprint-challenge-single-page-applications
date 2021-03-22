@@ -27,10 +27,7 @@ export default function PizzaForm(props) {
           {/* 🔥 RENDER THE VALIDATION ERRORS HERE */}
           <div>{errors.name}</div>
           <div>{errors.specialInstructions}</div>
-          <div>{errors.topings}</div>
-          <div>{errors.topping}</div>
-          <div>{errors.toppings}</div>
-          <div>{errors.toppings}</div>
+          
         </div>
       </div>
 
@@ -47,16 +44,63 @@ export default function PizzaForm(props) {
           />
         </label>
 
-        <label>special Instructions&nbsp;
-          <input
-            value={values.specialInstructions}
+        </div>
+      <div>
+          {/* ////////// DROPDOWN ////////// */}
+        <label>Choose Crust Size
+          <select
             onChange={onChange}
-            name='specialInstructions'
-            type='text'
+            value={values.choiceOfSize}
+            name='choiceOfSize'
+          >
+            <option value=''>- Select an option -</option>
+            <option value='small'>Small</option>
+            <option value='medium'>Medium</option>
+            <option value='large'>Large</option>
+            <option value='extra-large'>Extra-large</option>
+          </select>
+        </label>
+
+        {/* ////////// RADIO BUTTONS ////////// */}
+        <label>Original Red
+          <input
+            type='radio'
+            name='choiceOfSauce'
+            onChange={onChange}
+            value='originalRed'
+            checked={values.choiceOfSauce === 'originalRed'}
           />
         </label>
-        
-        
+
+        <label>Garlic Ranch
+          <input
+              type='radio'
+              name='choiceOfSauce'
+              onChange={onChange}
+              value='garlicRanch'
+              checked={values.choiceOfSauce === 'garlicRanch'}
+            />
+        </label>
+
+        <label>BBQ Sauce
+          <input
+              type='radio'
+              name='choiceOfSauce'
+              onChange={onChange}
+              value='BBQSauce'
+              checked={values.choiceOfSauce === 'BBQSauce'}
+            />
+        </label>
+        <label>Spinach Alfredo
+          <input
+              type='radio'
+              name='choiceOfSauce'
+              onChange={onChange}
+              value='spinachAlfredo'
+              checked={values.choiceOfSauce === 'spinachAlfredo'}
+            />
+        </label>
+
       </div>
 
       <div className='form-groupcheckboxes'>
@@ -177,7 +221,17 @@ export default function PizzaForm(props) {
               onChange={onChange}
               checked={values.extraCheese} 
             />
-        </label>    
+        </label> 
+            <div>
+            <label>special Instructions&nbsp;
+          <input
+            value={values.specialInstructions}
+            onChange={onChange}
+            name='specialInstructions'
+            type='text'
+          />
+        </label>
+            </div>   
 
       </div>
     </form>

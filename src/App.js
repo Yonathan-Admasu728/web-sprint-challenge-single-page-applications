@@ -1,7 +1,7 @@
 import {Route,NavLink,Switch,useParams,useRouteMatch} from 'react-router-dom'
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
-import formSchema from '../validation/formSchema'
+import formSchema from './formSchema'
 import * as yup from 'yup'
 import Order from './Order'
 import PizzaForm from './PizzaForm'
