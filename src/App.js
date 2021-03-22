@@ -1,11 +1,11 @@
-import {Route,NavLink,Switch,useParams,useRouteMatch} from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
 import formSchema from './formSchema'
 import * as yup from 'yup'
 import Order from './Order'
 import PizzaForm from './PizzaForm'
-
+import Home from './Home'
 
 //////////////// INITIAL STATES ////////////////
 const initialFormValues = {
@@ -91,6 +91,8 @@ const App = () => {
     const newOrder = {
       name: formValues.name.trim(),
       specialInstructions: formValues.specialInstruction.trim(),
+      choiceOfSauce: formValues.choiceOfSauce.trim(),
+      choiceOfSize: formValues.choiceOfSize.trim(),
       // 🔥 PICK TOPIGINGS
       Toppings: ['peperoni',
         'sausage',
@@ -121,8 +123,15 @@ const App = () => {
   return (
     <div className='container'>
       <header><h1>Build Your Own Pizza!</h1></header>
-
-      <PizzaForm
+      <nav>
+        <h1 className='pizza-header'>Pizza&apos;s power</h1>
+        <div className='nav-links'>
+          {/*  Make Links to navigate us Home (`/`) and Shop (`/PizzaForm`) */}
+          <Link to="/">Home</Link>
+          <Link to="/PizzaForm">Order</Link>
+        </div>
+      </nav>
+    <PizzaForm
         values={formValues}
         change={inputChange}
         submit={formSubmit}
@@ -137,6 +146,23 @@ const App = () => {
           )
         })
       }
+      {/* 👉 STEP 4 - Build a Switch with a Route for each of the components imported at the top */}
+      <Switch>
+        <Route exact path="/">
+          <Home/>
+        </Route>
+        <Route path="/pizza-form/:orderID">
+          <Order orders={orders} />
+        </Route>
+        
+        <Route path="/pizza-form">
+          <PizzaForm orders={orders} />
+        </Route>
+
+        
+      </Switch>
+
+
     </div>
   )
 };
