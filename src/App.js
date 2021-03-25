@@ -90,7 +90,7 @@ const App = () => {
   const formSubmit = () => {
     const newOrder = {
       name: formValues.name.trim(),
-      specialInstructions: formValues.specialInstruction.trim(),
+      specialInstructions: formValues.specialInstructions.trim(),
       choiceOfSauce: formValues.choiceOfSauce.trim(),
       choiceOfSize: formValues.choiceOfSize.trim(),
       // 🔥 PICK TOPIGINGS
@@ -122,47 +122,43 @@ const App = () => {
 
   return (
     <div className='container'>
-      <header><h1>Build Your Own Pizza!</h1></header>
+      <header><h1>Lambda Eats!</h1></header>
       <nav>
-        <h1 className='pizza-header'>Pizza&apos;s power</h1>
+        <h1 className='pizza-header'>Pizza&apos;s Pizza</h1>
         <div className='nav-links'>
           {/*  Make Links to navigate us Home (`/`) and Shop (`/PizzaForm`) */}
           <Link to="/">Home</Link>
-          <Link to="/PizzaForm">Order</Link>
+          <Link to="/PizzaForm">Pizza now!</Link>
         </div>
       </nav>
-    <PizzaForm
-        values={formValues}
+       {/* Build a Switch with a Route for each of the components imported at the top */}
+      <Switch>
+        
+        <Route path="/PizzaForm/:orderID">
+          {/* <Order orders={orders} /> */}
+        </Route>
+        
+        <Route exact path="/PizzaForm">
+          <PizzaForm orders={orders} values={formValues}
         change={inputChange}
         submit={formSubmit}
         disabled={disabled}
-        errors={formErrors}
-      />
+        errors={formErrors} />
+        </Route>
+        <Route path="/">
+          <Home/>
+        </Route>
+      </Switch>
+      
 
-      {
+  {
         orders.map(order => {
           return (
             <Order key={order.id} details={order} />
           )
         })
       }
-      {/* 👉 STEP 4 - Build a Switch with a Route for each of the components imported at the top */}
-      <Switch>
-        <Route exact path="/">
-          <Home/>
-        </Route>
-        <Route path="/pizza-form/:orderID">
-          <Order orders={orders} />
-        </Route>
-        
-        <Route path="/pizza-form">
-          <PizzaForm orders={orders} />
-        </Route>
-
-        
-      </Switch>
-
-
+      
     </div>
   )
 };

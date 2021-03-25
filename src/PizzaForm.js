@@ -24,7 +24,7 @@ export default function PizzaForm(props) {
         <button id = 'submitBtn' disabled={disabled}>Order</button>
 
         <div className='errors'>
-          {/* 🔥 RENDER THE VALIDATION ERRORS HERE */}
+          {/*RENDER THE VALIDATION ERRORS HERE */}
           <div>{errors.name}</div>
           <div>{errors.specialInstructions}</div>
           
@@ -44,7 +44,8 @@ export default function PizzaForm(props) {
           />
         </label>
 
-        </div>
+        
+</div>
       <div>
           {/* ////////// DROPDOWN ////////// */}
         <label>Choose Crust Size
